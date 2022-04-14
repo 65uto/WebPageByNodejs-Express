@@ -19,27 +19,23 @@ router.get('/about', (req, res) => {
     res.sendFile(coursePage)
 })
 router.get('/course/:id', async (req, res) => {
-    try {
-        // ใช้วิธีการสร้างตำเเหนงไฟล์ขึ้นมา
-        const courseID = req.params.id;
-        const fileName = '../webPage/course' + courseID + '.html';
-        const localFile = path.join(__dirname, fileName);
 
-        fs.readFile(localFile, (err) => {
-            if(err) {
-                console.log(`Error : ${err}`) 
-                res.redirect('/')
-            }
-            else{
-                res.sendFile(localFile);
-                console.log(`Local_file : ${localFile}; ID: ${courseID}`)
-            }
-        })
+    // ใช้วิธีการสร้างตำเเหนงไฟล์ขึ้นมา
+    //อ้างอิง https://stackoverflow.com/questions/10049557/reading-all-files-in-a-directory-store-them-in-objects-and-send-the-object
+    const courseID = req.params.id;
+    const fileName = '../webPage/course' + courseID + '.html';
+    const localFile = path.join(__dirname, fileName);
 
-    } catch (error) {
-        console.log(`Error : ${error}`) 
-    }
-
+    fs.readFile(localFile, (err) => {
+        if(err) {
+            console.log(`Error : ${err}`) 
+            res.redirect('/')
+        }
+        else{
+            res.sendFile(localFile);
+            console.log(`Local_file : ${localFile}; ID: ${courseID}`)
+        }
+    })
 })
 
 router.get('/course', (req, res)=>{
