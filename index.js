@@ -72,5 +72,5 @@ const router = require('./routes/myRouter')
 app.use(router)
 
 app.listen(8000, () => {
-    console.log('Run server in port 8000 555')
+    console.log('Run server in port 8000 ')
 })

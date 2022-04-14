@@ -1,5 +1,6 @@
 const path = require('path')
 const express = require('express')
+const { rmSync } = require('fs')
 const app = express()
 const router = express.Router()
 
@@ -13,14 +14,18 @@ router.get('/', (req, res) => {
 router.get('/about', (req, res) => {
     res.sendFile(path.join(__dirname, '../webPage/about.html'))
 })
+router.get('/course/:id', async (req, res) => {
+    try {
+        // ใช้วิธีการสร้างตำเเหนงไฟล์ขึ้นมา
+        const courseID = req.params.id;
+        const fileName = '../webPage/course' + courseID + '.html';
+        const localFile = path.join(__dirname, fileName);
+        res.sendFile(localFile);
+        console.log(`Local_file : ${localFile}; ID: ${courseID}`)
+    } catch (error) {
+        console.log(`Error : ${error}`) 
+    }
 
-router.get('/course/:id',(req, res)=>{
-    // res.sendFile(path.join(__dirname,'../webPage/course.html'))
-    // ใช้วิธีการสร้างตำเเหนงไฟล์ขึ้นมา
-    const courseID = req.params.id
-    const fileName = '../webPage/course' + courseID + '.html'
-    const localFile = path.join(__dirname, fileName)
-    res.sendFile(localFile)
 })
 
 router.get('/course', (req, res)=>{
