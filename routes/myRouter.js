@@ -25,7 +25,7 @@ router.get('/course/:id', async (req, res) => {
         const fileName = '../webPage/course' + courseID + '.html';
         const localFile = path.join(__dirname, fileName);
 
-        fs.readFile(localFile, (err,html) => {
+        fs.readFile(localFile, (err) => {
             if(err) {
                 console.log(`Error : ${err}`) 
                 res.redirect('/')
