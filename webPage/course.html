@@ -90,6 +90,14 @@
         position: relative;
         text-align: center;
     }
+    .course{
+        position: relative;
+        text-align: center;
+        background: rgb(0, 0, 0);
+        width: 200px;
+        margin: 50px;
+        border-radius: 200px;
+    }
 </style>
 
 <body>
@@ -101,12 +109,45 @@
             alt="">
     </li>
 
-    <p style="left: 10px;">
-        <a href="/course/1">
-            <img style="width: 100px" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Ruby_logo.svg" alt="">
-            <h2 style="color:rgb(31, 31, 31)">RUBY</h2>
-        </a>
-    </p>
+<center>
+    <table border="5" style="background-color: black;">
+        <tr>
+            <th>
+                <a href="/course/1">
+                    <div class="course">
+                        <p style="left: 10px;">
+                            <img style="width: 100px" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Ruby_logo.svg" alt="">
+                        <h2 style="color: rgb(81, 241, 121);">RUBY</h2>
+                        </p>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="/course/2">
+                    <div class="course">
+                        <p style="left: 10px;">
+                            <img style="width: 150px" src="https://cdn.pixabay.com/photo/2018/09/28/03/33/python-3708448_1280.jpg" alt="">
+                        <h2 style="color: rgb(81, 241, 121);">PYTHON</h2>
+                        </p>
+                    </div>
+                </a>
+            </th>
+
+            <th>
+                <a href="/course/3">
+                    <div class="course">
+                        <p style="left: 10px;">
+                            <img style="width: 100px" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Javascript-736400_960_720.png" alt="">
+                        <h2 style="color: rgb(81, 241, 121);">JAVA_SCRIPT</h2>
+                        </p>
+                    </div>
+                </a>
+            </th>
+        </tr>
+    </table>
+
+</center>
 
 </body>
 
