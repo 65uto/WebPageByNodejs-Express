@@ -1,19 +1,70 @@
 const path = require('path')
-const express = require('express')
+const express = require('express');
 const { rmSync } = require('fs')
-const app = express()
 const router = express.Router()
 const fs = require('fs')
+const mysql = require('mysql');
+const session = require('express-session');
 
-//อ้างอิงตำเเหน่งไฟล์
-const Webpage = path.join(__dirname, '../webPage/index.html')
-const coursePage = path.join(__dirname, '../webPage/about.html')
+const connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'accounts'
+});
+
+router.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}));
+
+router.use(express.json());
+router.use(express.urlencoded({ extended: true }));
+router.use(express.static(path.join(__dirname + 'static')))
 
 router.get('/', (req, res) => {
-    res.status(200)
-    res.type('text/html')
-    res.sendFile(Webpage)
-})
+    const loginFile = path.join(__dirname + '/../webPage/login.html');
+    res.sendFile(loginFile);
+});
+
+router.post('/auth', (req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    if (username && password) {
+        connection.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function (error, results, fields) {
+            if (error) throw error;
+
+            if (results.length > 0) {
+                req.session.loggedin = true;
+                req.session.username = username;
+                res.redirect('/home');
+            } else {
+                res.send('Incorrect')
+            }
+            res.end();
+        });
+    } else {
+        res.send('Please Enter name and password')
+        res.end();
+    }
+});
+
+router.get('/home', (req, res) => {
+    if (req.session.loggedin) {
+        const Webpage = path.join(__dirname, '../webPage/index.html')
+        res.sendFile(Webpage)
+        
+    } else {
+        res.send(`<h1>Please login to view this page!</h1>`)
+    }
+});
+
+//อ้างอิงตำเเหน่งไฟล์
+
+const coursePage = path.join(__dirname, '../webPage/about.html')
+
+
 router.get('/about', (req, res) => {
     
     res.sendFile(coursePage)
