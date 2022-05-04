@@ -49,9 +49,9 @@ app.post('/auth', (req, res) => {
 
 app.get('/home', function (req, res) {
     if (req.session.loggedin) {
-        app.use(router)
+        res.send('Wellcoome')
     } else {
-        res.sendFile(`<h1>Please login to view this page!</h1>`)
+        res.send(`<h1>Please login to view this page!</h1>`)
     }
     res.end();
 });
