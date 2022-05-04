@@ -9,10 +9,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3",
+    "express": "^4.18.0",
     "http": "0.0.1-security",
     "nodemon": "^2.0.15"
   },
   "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/65uto/WebPageByNodejs-Express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/65uto/WebPageByNodejs-Express/issues"
+  },
+  "homepage": "https://github.com/65uto/WebPageByNodejs-Express#readme",
   "description": ""
 }
